@@ -22,7 +22,7 @@ namespace AccountManagement
         }
         public void RemoveAccount(string accountName, int accountPin)
         {
-            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) && x[0].Equals(accountPin));
+            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) && x[1].Equals(accountPin));
             if (index > 0)
             {
                 Program.accounts.RemoveAt(index);
@@ -31,11 +31,18 @@ namespace AccountManagement
                 Program.accountBsbs.RemoveAt(index);
             }
             else
-                throw new ArgumentException("Error 002; the account name or the account pin is inccorect, please try again");
-        }   
+                throw new ArgumentException("Error 002; the account name or the account pin is incorrect, please try again");
+        }
         public void EditAccount(string accountName, int accountPin, string newAccountName, int newAccountPin)
-        { 
-            
+        {
+            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) && x[1].Equals(accountPin));
+            if (index < 0)
+                throw new ArgumentException("Error 002; the account name or the account pin is incorrect, please try again");
+            else
+            {
+                Program.accounts[index][0] = newAccountName;
+                Program.accounts[index][1] = newAccountPin; 
+            }
         }        
     }
 }

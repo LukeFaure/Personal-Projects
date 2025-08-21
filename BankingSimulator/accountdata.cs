@@ -9,9 +9,8 @@ namespace AccountData
         {
             return $"Name: {Name}, Pin: {Pin}, BSB: {Bsb}";
         }
-
         public string Name { get; set; }
-        public int Pin { get; set;  }
+        public int Pin { get; set; }
         public int Bsb { get; set; }
         public AccountRecords(string name, int pin, int bsb)
         {
@@ -25,7 +24,7 @@ namespace AccountData
             Program.accountNames.Add(name);
             Program.accountPins.Add(pin);
             Program.accountBsbs.Add(bsb);
-            Program.accounts.Add(new object[] { name, pin, bsb });
+            Program.accounts.Add([name, pin, bsb, 0]);
         }
-    } 
+    }
 }

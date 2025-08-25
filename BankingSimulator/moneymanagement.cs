@@ -7,7 +7,7 @@ namespace MoneyLogic
 {
     public class MoneyMain
     {
-        public void TransferMoney(string accountNameOne, int accountPinOne, int accountBsbOne, string accountNameTwo, int accountPinTwo, int accountBsbTwo, int moneyToTransfer)
+        public static void TransferMoney(string accountNameOne, int accountPinOne, int accountBsbOne, string accountNameTwo, int accountPinTwo, int accountBsbTwo, int moneyToTransfer)
         {
             int indexOfAccountOne = Program.accounts.FindIndex(x => x[0].Equals(accountNameOne) &&
                                                          x[1].Equals(accountPinOne) &&
@@ -30,7 +30,7 @@ namespace MoneyLogic
                 }
             }
         }
-        public void WithdrawMoney(string accountName, int accountPin, int accountBsb, int moneyToWithdraw)
+        public static void WithdrawMoney(string accountName, int accountPin, int accountBsb, int moneyToWithdraw)
         {
             int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) &&
                                                 x[1].Equals(accountPin) &&
@@ -46,6 +46,19 @@ namespace MoneyLogic
                     Program.accounts[index][3] = (int)Program.accounts[index][3] - moneyToWithdraw;
                     File.AppendAllText(Program.logPath, $"{DateTime.Now}: {accountName} withdrew {moneyToWithdraw} dollars \n");
                 }
+            }
+        }
+        public static void DepositMoney(string accountName, int accountPin, int accountBsb, int depositAmount)
+        {
+            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) &&
+                                                x[1].Equals(accountPin) &&
+                                                x[2].Equals(accountBsb));
+            if (index < 0)
+                throw new ArgumentException("Error 005; account name, pin or bsb is incorrect, please try again");
+            else
+            {
+                Program.accounts[index][3] = (int)Program.accounts[index][3] + depositAmount;
+                File.AppendAllText(Program.logPath, $"{DateTime.Now}: {depositAmount} dollars was deposited into {accountName} account");
             }
         }
     }

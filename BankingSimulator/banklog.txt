@@ -1,0 +1,32 @@
+08/25/2025 22:46:32: New Account Created | name: Luke pin: 658 bsb: 85587608/25/2025 22:47:34: 1000 dollars was deposited into Luke account08/26/2025 00:03:55: New Account Created | name: Luke pin: 4567 bsb: 76167208/26/2025 00:10:49: New Account Created | name: LLuke pin: 453 bsb: 71302208/26/2025 00:19:40: New Account Created | name: Luke pin: 456 bsb: 168101
+08/26/2025 00:19:46: account deleted | name: Luke pin: 456
+
+08/26/2025 00:21:24: New Account Created | name: Luke pin: 456 bsb: 138325
+
+08/26/2025 00:21:33: account deleted | name: Luke pin: 456
+
+08/26/2025 04:14:20: New Account Created | name: Luke pin: 456 bsb: 397916
+
+08/26/2025 04:15:05: 5000 dollars was deposited into Luke account
+
+08/26/2025 04:15:14: New Account Created | name: Nathan pin: 345 bsb: 762452
+
+08/26/2025 04:17:44: New Account Created | name: Luke pin: 456 bsb: 562904
+
+08/26/2025 04:17:51: New Account Created | name: Nathan pin: 345 bsb: 894910
+
+08/26/2025 04:18:15: 5000 dollars was deposited into Luke account
+
+08/26/2025 04:19:11: 5000 dollars was deposited into Nathan account
+
+08/26/2025 04:19:35: Luke recieved 100 dollars from Nathan
+
+08/26/2025 11:37:44: New Account Created | name: Luke pin: 3452 bsb: 805426
+
+08/26/2025 11:37:53: New Account Created | name: Nathan pin: 2345 bsb: 727828
+
+08/26/2025 11:38:12: 5000 dollars was deposited into Luke account
+
+08/26/2025 11:38:34: 5000 dollars was deposited into Nathan account
+
+08/26/2025 11:39:31: Luke recieved 1000 dollars from Nathan

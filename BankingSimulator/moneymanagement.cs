@@ -9,56 +9,49 @@ namespace MoneyLogic
     {
         public static void TransferMoney(string accountNameOne, int accountPinOne, int accountBsbOne, string accountNameTwo, int accountPinTwo, int accountBsbTwo, int moneyToTransfer)
         {
-            int indexOfAccountOne = Program.accounts.FindIndex(x => x[0].Equals(accountNameOne) &&
-                                                         x[1].Equals(accountPinOne) &&
-                                                         x[2].Equals(accountBsbOne));
-            int indexOfAccountTwo = Program.accounts.FindIndex(x => x[0].Equals(accountNameTwo) &&
-                                                         x[1].Equals(accountPinTwo) &&
-                                                         x[2].Equals(accountBsbTwo));
-            if (indexOfAccountOne < 0 || indexOfAccountTwo < 0)
-                throw new ArgumentException("Error 003; account names, pins or bsbs do not match, please try again");
+            var sender = Program.accounts.Find(x => x.Name == accountNameOne && x.Pin == accountPinOne && x.Bsb == accountBsbOne);
+            var reciever = Program.accounts.Find(x => x.Name == accountNameTwo && x.Pin == accountPinTwo && x.Bsb == accountBsbTwo);
+
+            if (sender == null || reciever == null)
+                throw new ArgumentException("Error 013; account not found, name or pin or bsb could be incorrect");
             else
             {
-                if (moneyToTransfer > (int)Program.accounts[indexOfAccountTwo][3])
-                    throw new ArgumentException("Error 004; insufficient funds in transferor account");
+                if (moneyToTransfer > sender.Balance)
+                    throw new ArgumentException("Error 014; insufficient funds");
                 else
                 {
-                    Program.accounts[indexOfAccountOne][3] = (int)Program.accounts[indexOfAccountOne][3] + moneyToTransfer;
-                    Program.accounts[indexOfAccountTwo][3] = (int)Program.accounts[indexOfAccountTwo][3] - moneyToTransfer;
+                    sender.Balance -= moneyToTransfer;
+                    reciever.Balance += moneyToTransfer;
 
-                    File.AppendAllText(Program.logPath, $"{DateTime.Now}: {accountNameOne} recieved {moneyToTransfer} dollars from {accountNameTwo} \n");
+                    File.AppendAllText(Program.logPath, $"\n{DateTime.Now}: {accountNameTwo} recieved {moneyToTransfer} dollars from {accountNameOne}\n");
                 }
             }
         }
         public static void WithdrawMoney(string accountName, int accountPin, int accountBsb, int moneyToWithdraw)
         {
-            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) &&
-                                                x[1].Equals(accountPin) &&
-                                                x[2].Equals(accountBsb));
-            if (index < 0)
-                throw new ArgumentException("Error 005; account name, pin or bsb is incorrect, please try again");
+            var account = Program.accounts.Find(x => x.Name == accountName && x.Pin == accountPin && x.Bsb == accountBsb);
+            if (account == null)
+                throw new ArgumentException("Error 013; account name, pin or bsb is incorrect, please try again");
             else
             {
-                if (moneyToWithdraw > (int)Program.accounts[index][3])
-                    throw new ArgumentException("Error 006; insufficient funds");
+                if (moneyToWithdraw > account.Balance)
+                    throw new ArgumentException("Error 014; insufficient funds");
                 else
                 {
-                    Program.accounts[index][3] = (int)Program.accounts[index][3] - moneyToWithdraw;
-                    File.AppendAllText(Program.logPath, $"{DateTime.Now}: {accountName} withdrew {moneyToWithdraw} dollars \n");
+                    account.Balance -= moneyToWithdraw;
+                    File.AppendAllText(Program.logPath, $"\n{DateTime.Now}: {accountName} withdrew {moneyToWithdraw} dollars\n");
                 }
             }
         }
         public static void DepositMoney(string accountName, int accountPin, int accountBsb, int depositAmount)
         {
-            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) &&
-                                                x[1].Equals(accountPin) &&
-                                                x[2].Equals(accountBsb));
-            if (index < 0)
-                throw new ArgumentException("Error 005; account name, pin or bsb is incorrect, please try again");
+            var account = Program.accounts.Find(x => x.Name == accountName && x.Pin == accountPin && x.Bsb == accountBsb);
+            if (account == null)
+                throw new ArgumentException("Error 013; account name, pin or bsb is incorrect, please try again");
             else
             {
-                Program.accounts[index][3] = (int)Program.accounts[index][3] + depositAmount;
-                File.AppendAllText(Program.logPath, $"{DateTime.Now}: {depositAmount} dollars was deposited into {accountName} account");
+                account.Balance += depositAmount;
+                File.AppendAllText(Program.logPath, $"\n{DateTime.Now}: {depositAmount} dollars was deposited into {accountName} account\n");
             }
         }
     }

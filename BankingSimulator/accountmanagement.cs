@@ -7,7 +7,7 @@ using BankingMain;
 namespace AccountManagement
 {
     public class AccountManaging
-    { 
+    {
         private static Random rnd = new Random();
         public static void CreateAccount(string accountName, int accountPin)
         {
@@ -21,32 +21,37 @@ namespace AccountManagement
                 Console.WriteLine(ex.Message);
             }
         }
-        public static void RemoveAccount(string? accountName, int? accountPin)
+        public static void RemoveAccount(string accountName, int accountPin)
         {
-            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) && x[1].Equals(accountPin));
-            if (index >= 0)
+            var account = Program.accounts.Find(x => x.Name == accountName && x.Pin == accountPin);
+            if (account != null)
             {
-                Program.accounts.RemoveAt(index);
-                Program.accountNames.RemoveAt(index);
-                Program.accountPins.RemoveAt(index);
-                Program.accountBsbs.RemoveAt(index);
+                Program.accounts.Remove(account);
                 File.AppendAllText(Program.logPath, $"\n{DateTime.Now}: account deleted | name: {accountName} pin: {accountPin}\n");
             }
             else
-                throw new ArgumentException("Error 002; the account name or the account pin is incorrect, please try again");
+                throw new ArgumentException("Error 011; the account name or the account pin is incorrect, please try again");
         }
-        public static void EditAccount(string? accountName, int? accountPin, string newAccountName, int newAccountPin)
+        public static void EditAccount(string accountName, int accountPin, string newAccountName, int newAccountPin)
         {
-            int index = Program.accounts.FindIndex(x => x[0].Equals(accountName) && x[1].Equals(accountPin));
+            var account = Program.accounts.Find(a => a.Name == accountName && a.Pin == accountPin);
+            if (account == null)
+                throw new ArgumentException("Error 011; the account name or the account pin is incorrect, please try again");
+            int index = Program.accounts.FindIndex(x => x.Name == accountName && x.Pin == accountPin);
             if (index < 0)
-                throw new ArgumentException("Error 002; the account name or the account pin is incorrect, please try again");
-            if (Program.accounts.Any(a =>
-                                        a[0].Equals(newAccountName) ||
-                                        a[1].Equals(newAccountPin)))
-                throw new ArgumentException("Error 008; the account name or pin already exists, please try again");
-            Program.accounts[index][0] = newAccountName;
-            Program.accounts[index][1] = newAccountPin;
+                throw new ArgumentException("Error 011; the account name or the account pin is incorrect, please try again");
+            if (Program.accounts.Where((a, i) => i != index).Any(a => a.Name == newAccountName || a.Pin == newAccountPin))
+                throw new ArgumentException("Error 010; the account name or pin already exists, please try again");
+            account.Name = newAccountName;
+            account.Pin = newAccountPin;
             File.AppendAllText(Program.logPath, $"\n{DateTime.Now} account edited | name: {accountName} pin: {accountPin} new name: {newAccountName} new pin: {newAccountPin}\n");
-        }        
+        }
+        public static void ViewAccount(string accountName, int accountPin)
+        {
+            var account = Program.accounts.Find(a => a.Name == accountName && a.Pin == accountPin);
+            if (account == null)
+                throw new ArgumentException("Error 011; the account name or the account pin is incorrect");
+            Console.WriteLine(account);
+        }    
     }
 }

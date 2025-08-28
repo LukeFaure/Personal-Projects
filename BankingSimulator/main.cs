@@ -7,18 +7,27 @@ using System.Transactions;
 using AccountData;
 using AccountManagement;
 using MoneyLogic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace BankingMain
 {
     public static class Program
     {
-        public static List<AccountRecords> accounts = new List<AccountRecords>();
+        public static List<AccountRecords>? accounts;
         public static string logPath = "banklog.txt";
+        public static string jsonPath = "accounts.json";
         public static bool running = true;
         public static int frame = 0;
         public static int menu = 0;
+        public static string? jsonString;
         public static void Main(string[] args)
         {
+            string json = File.ReadAllText(jsonPath);
+            if (!string.IsNullOrWhiteSpace(json))
+                accounts = JsonSerializer.Deserialize<List<AccountRecords>>(json);
+            else
+                accounts = new List<AccountRecords>();
             Console.WriteLine("Welcome to the Faure Bank\n");
             Console.WriteLine("[manage accounts]\ntransfer funds\nwithdraw funds\ndeposit funds\n");
             while (running)
@@ -34,10 +43,6 @@ namespace BankingMain
                     File.AppendAllText(logPath, $"\n{DateTime.Now}: {ex.Message}");
                 }
             }
-        }
-        public static void ViewAccount(string accountName, int accountPin)
-        {
-
         }
     }
     public class UI
@@ -85,7 +90,10 @@ namespace BankingMain
                     Program.menu--;
                     Console.Clear();
                     if (Program.menu < 0)
+                    {
+                        File.WriteAllText(Program.jsonPath, JsonSerializer.Serialize(Program.accounts));
                         Environment.Exit(0);
+                    }
                 }
                 switch (Program.frame)
                 {

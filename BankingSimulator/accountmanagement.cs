@@ -13,7 +13,7 @@ namespace AccountManagement
         {
             try
             {
-                var newAccount = new AccountData.AccountRecords(accountName, accountPin, rnd.Next(100000, 1000000));
+                var newAccount = new AccountData.AccountRecords(accountName, accountPin, rnd.Next(100000, 1000000), 0);
                 Console.WriteLine(newAccount);
             }
             catch (ArgumentException ex)

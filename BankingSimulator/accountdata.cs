@@ -14,7 +14,9 @@ namespace AccountData
         public int Pin { get; set; }
         public int Bsb { get; set; }
         public int Balance { get; set; }
-        public AccountRecords(string name, int pin, int bsb)
+
+        public AccountRecords() {}
+        public AccountRecords(string name, int pin, int bsb, int balance)
         {
             if (Program.accounts.Exists(a => a.Name == name || a.Pin == pin || a.Bsb == bsb))
                 throw new ArgumentException("Error 010; the account name or the account pin already exists, please try again");

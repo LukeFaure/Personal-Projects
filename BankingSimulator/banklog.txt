@@ -44,3 +44,25 @@
 08/28/2025 02:37:26: 5000 dollars was deposited into Luke account
 
 08/28/2025 02:38:04: Nathan recieved 3000 dollars from Luke
+
+08/28/2025 04:17:06: New Account Created | name: Noah pin: 1234 bsb: 516702
+
+08/28/2025 04:17:27: 5000 dollars was deposited into Noah account
+
+08/29/2025 01:15:05: New Account Created | name: Luke pin: 3692 bsb: 984080
+
+08/29/2025 01:15:32: 10000 dollars was deposited into Luke account
+
+08/29/2025 04:22:49: New Account Created | name: Name pin: 1111 bsb: 105598
+
+08/29/2025 04:28:41: Error 007; invalid key press
+08/29/2025 04:28:42: Error 007; invalid key press
+08/29/2025 04:28:43: Error 007; invalid key press
+08/29/2025 04:28:47: Error 007; invalid key press
+09/01/2025 02:14:43: New Account Created | name: 67-41 pin: 6741 bsb: 540574
+
+09/17/2025 23:01:42: New Account Created | name: IDKman pin: 4167 bsb: 913045
+
+09/17/2025 23:02:26: 4167000 dollars was deposited into IDKman account
+
+09/17/2025 23:03:15: Luke recieved 50000 dollars from IDKman

@@ -66,3 +66,7 @@
 09/17/2025 23:02:26: 4167000 dollars was deposited into IDKman account
 
 09/17/2025 23:03:15: Luke recieved 50000 dollars from IDKman
+
+10/16/2025 02:07:39: New Account Created | name: Alex pin: 6769 bsb: 532402
+
+10/16/2025 02:08:49: 10000 dollars was deposited into Alex account

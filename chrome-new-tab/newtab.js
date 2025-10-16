@@ -59,9 +59,7 @@ const images = [
     "images/su 35 wallpaper.jpg"
   ];
   
-  const encodedImages = images.map(img => encodeURI(img));
-  
-  const randomImage = encodedImages[Math.floor(Math.random() * encodedImages.length)];
-  
+  const randomImage = images[Math.floor(Math.random() * images.length)];
+
   document.body.style.backgroundImage = `url('${randomImage}')`;
   

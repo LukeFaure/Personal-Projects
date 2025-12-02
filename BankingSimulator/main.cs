@@ -83,7 +83,8 @@ namespace BankingMain
                             Console.WriteLine(ex.Message);
                         }
                     }
-                    Program.menu++;
+                    else
+                        Program.menu++;
                 }
                 else if (pressedKey.Key == ConsoleKey.Escape)
                 {
@@ -151,6 +152,10 @@ namespace BankingMain
     }
     public static class ExecuteMethod
     {
+        public static bool transferAccount = false;
+        public static bool withdrawAccount = false;
+        public static bool fetchNewAccountName = false;
+        public static bool fetchNewAccountPin = false;
         public static void ExecuteSelected()
         {
             if (Program.menu == 1)
@@ -171,8 +176,12 @@ namespace BankingMain
                 {
                     string accountName = FetchAccountVariables.GetName();
                     int accountPin = FetchAccountVariables.GetPin();
+                    fetchNewAccountName = true;
                     string newAccountName = FetchAccountVariables.GetName();
+                    fetchNewAccountName = false;
+                    fetchNewAccountPin = true;
                     int newAccountPin = FetchAccountVariables.GetPin();
+                    fetchNewAccountPin = false;
                     AccountManaging.EditAccount(accountName, accountPin, newAccountName, newAccountPin);
                 }
                 else if (Program.frame == 3)
@@ -186,10 +195,15 @@ namespace BankingMain
             {
                 if (Program.frame == 1)
                 {
+
+                    transferAccount = true;
                     string sendingAccountName = FetchAccountVariables.GetName();
+                    transferAccount = false;
                     int sendingAccountPin = FetchAccountVariables.GetPin();
                     int sendingAccountBsb = FetchAccountVariables.GetBsb();
+                    withdrawAccount = true;
                     string receivingAccountName = FetchAccountVariables.GetName();
+                    withdrawAccount = false;
                     int receivingAccountPin = FetchAccountVariables.GetPin();
                     int receivingAccountBsb = FetchAccountVariables.GetBsb();
                     Console.WriteLine("Enter amount to transfer: ");
@@ -223,7 +237,10 @@ namespace BankingMain
         {
             while (true)
             {
-                Console.WriteLine("Enter a 4 digit pin: ");
+                if (ExecuteMethod.fetchNewAccountPin)
+                    Console.WriteLine("Enter new 4 digit pin: ");
+                else
+                    Console.WriteLine("Enter a 4 digit pin: ");
                 string? userPin = Console.ReadLine();
                 if (userPin != null)
                 {
@@ -306,7 +323,15 @@ namespace BankingMain
         {
             while (true)
             {
-                Console.WriteLine("Enter accout name: ");
+                if (ExecuteMethod.transferAccount)
+                    Console.WriteLine("Enter sending account name: ");
+                else if (ExecuteMethod.withdrawAccount)
+                    Console.WriteLine("Enter receiving account name: ");
+                else if (ExecuteMethod.fetchNewAccountName)
+                    Console.WriteLine("Enter new account name: ");
+                else
+                    Console.WriteLine("Enter account name: ");
+        
                 string? accountName = Console.ReadLine();
                 if (accountName != null)
                     return accountName;

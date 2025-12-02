@@ -93,3 +93,17 @@
 11/13/2025 22:00:01 account edited | name: Test pin: 1276 new name: Tester new pin: 7688
 
 11/13/2025 22:04:46 account edited | name: Tester pin: 7688 new name: Testing new pin: 7692
+
+12/02/2025 21:57:56: New Account Created | name: Test 1 pin: 1235 bsb: 609385
+
+12/02/2025 21:58:12: account deleted | name: Test 1 pin: 1235
+
+12/02/2025 21:58:40: New Account Created | name: Test 1 pin: 1235 bsb: 212436
+
+12/02/2025 21:58:57 account edited | name: Test 1 pin: 1235 new name: Test 2 new pin: 1236
+
+12/02/2025 22:00:07: Test 2 recieved 100 dollars from Luke
+
+12/02/2025 22:00:26: Test 2 withdrew 100 dollars
+
+12/02/2025 22:00:42: 1 dollars was deposited into Test 2 account

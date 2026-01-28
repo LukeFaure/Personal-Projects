@@ -1,0 +1,15 @@
+/workspaces/Personal-Projects/BankingSimulator/bin/Debug/net9.0/BankingSimulator
+/workspaces/Personal-Projects/BankingSimulator/bin/Debug/net9.0/BankingSimulator.deps.json
+/workspaces/Personal-Projects/BankingSimulator/bin/Debug/net9.0/BankingSimulator.runtimeconfig.json
+/workspaces/Personal-Projects/BankingSimulator/bin/Debug/net9.0/BankingSimulator.dll
+/workspaces/Personal-Projects/BankingSimulator/bin/Debug/net9.0/BankingSimulator.pdb
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.AssemblyInfoInputs.cache
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.AssemblyInfo.cs
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.csproj.CoreCompileInputs.cache
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.sourcelink.json
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.dll
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/refint/BankingSimulator.dll
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.pdb
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/BankingSimulator.genruntimeconfig.cache
+/workspaces/Personal-Projects/BankingSimulator/obj/Debug/net9.0/ref/BankingSimulator.dll

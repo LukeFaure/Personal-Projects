@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using BankingMain;
 
 namespace MoneyLogic
 {
     public class MoneyMain
     {
-        public static void TransferMoney(string accountNameOne, int accountPinOne, int accountBsbOne, string accountNameTwo, int accountPinTwo, int accountBsbTwo, int moneyToTransfer)
+        public static void TransferMoney(string accountNameOne, int accountPinOne, int accountBsbOne, string accountNameTwo, int accountPinTwo, int accountBsbTwo, long moneyToTransfer)
         {
             var sender = Program.accounts.Find(x => x.Name == accountNameOne && x.Pin == accountPinOne && x.Bsb == accountBsbOne);
-            var reciever = Program.accounts.Find(x => x.Name == accountNameTwo && x.Pin == accountPinTwo && x.Bsb == accountBsbTwo);
+            var receiver = Program.accounts.Find(x => x.Name == accountNameTwo && x.Pin == accountPinTwo && x.Bsb == accountBsbTwo);
 
-            if (sender == null || reciever == null)
+            if (sender == null || receiver == null)
                 throw new ArgumentException("Error 013; account not found, name or pin or bsb could be incorrect");
             else
             {
@@ -21,13 +18,13 @@ namespace MoneyLogic
                 else
                 {
                     sender.Balance -= moneyToTransfer;
-                    reciever.Balance += moneyToTransfer;
+                    receiver.Balance += moneyToTransfer;
 
-                    File.AppendAllText(Program.logPath, $"\n{DateTime.Now}: {accountNameTwo} recieved {moneyToTransfer} dollars from {accountNameOne}\n");
+                    File.AppendAllText(Program.logPath, $"\n{DateTime.Now}: {accountNameTwo} received {moneyToTransfer} dollars from {accountNameOne}\n");
                 }
             }
         }
-        public static void WithdrawMoney(string accountName, int accountPin, int accountBsb, int moneyToWithdraw)
+        public static void WithdrawMoney(string accountName, int accountPin, int accountBsb, long moneyToWithdraw)
         {
             var account = Program.accounts.Find(x => x.Name == accountName && x.Pin == accountPin && x.Bsb == accountBsb);
             if (account == null)
@@ -43,7 +40,7 @@ namespace MoneyLogic
                 }
             }
         }
-        public static void DepositMoney(string accountName, int accountPin, int accountBsb, int depositAmount)
+        public static void DepositMoney(string accountName, int accountPin, int accountBsb, long depositAmount)
         {
             var account = Program.accounts.Find(x => x.Name == accountName && x.Pin == accountPin && x.Bsb == accountBsb);
             if (account == null)

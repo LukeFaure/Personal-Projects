@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.IO;
-using System.Linq.Expressions;
-using System.Transactions;
 using AccountData;
 using AccountManagement;
 using MoneyLogic;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace BankingMain
 {
@@ -80,7 +73,7 @@ namespace BankingMain
                         }
                         catch (ArgumentException ex)
                         {
-                            Console.WriteLine(ex.Message);
+                            Console.WriteLine(ex.Message);                       
                         }
                     }
                     else
@@ -90,7 +83,7 @@ namespace BankingMain
                 {
                     Program.menu--;
                     Console.Clear();
-                    if (Program.menu < 0)
+                    if (Program.menu <= 0)
                     {
                         File.WriteAllText(Program.jsonPath, JsonSerializer.Serialize(Program.accounts));
                         Environment.Exit(0);
@@ -156,6 +149,10 @@ namespace BankingMain
         public static bool withdrawAccount = false;
         public static bool fetchNewAccountName = false;
         public static bool fetchNewAccountPin = false;
+        public static bool transferAmount = false;
+        public static bool withdrawAmount = false;
+        public static bool depositAmount = false;
+
         public static void ExecuteSelected()
         {
             if (Program.menu == 1)
@@ -206,8 +203,9 @@ namespace BankingMain
                     withdrawAccount = false;
                     int receivingAccountPin = FetchAccountVariables.GetPin();
                     int receivingAccountBsb = FetchAccountVariables.GetBsb();
-                    Console.WriteLine("Enter amount to transfer: ");
-                    int amount = FetchAccountVariables.CheckMoney();
+                    transferAmount = true;
+                    long amount = FetchAccountVariables.CheckMoney();
+                    transferAmount = false;
                     MoneyMain.TransferMoney(sendingAccountName, sendingAccountPin, sendingAccountBsb, receivingAccountName, receivingAccountPin, receivingAccountBsb, amount);
                 }
                 else if (Program.frame == 2)
@@ -215,8 +213,9 @@ namespace BankingMain
                     string accountName = FetchAccountVariables.GetName();
                     int accountPin = FetchAccountVariables.GetPin();
                     int accountBsb = FetchAccountVariables.GetBsb();
-                    Console.WriteLine("Enter amount to withdraw: ");
-                    int amount = FetchAccountVariables.CheckMoney();
+                    withdrawAmount = true;
+                    long amount = FetchAccountVariables.CheckMoney();
+                    withdrawAmount = false;
                     MoneyMain.WithdrawMoney(accountName, accountPin, accountBsb, amount);
                 }
                 else if (Program.frame == 3)
@@ -224,8 +223,9 @@ namespace BankingMain
                     string accountName = FetchAccountVariables.GetName();
                     int accountPin = FetchAccountVariables.GetPin();
                     int accountBsb = FetchAccountVariables.GetBsb();
-                    Console.WriteLine("Enter amount to deposit: ");
-                    int amount = FetchAccountVariables.CheckMoney();
+                    depositAmount = true;
+                    long amount = FetchAccountVariables.CheckMoney();
+                    depositAmount = false;
                     MoneyMain.DepositMoney(accountName, accountPin, accountBsb, amount);
                 }
             }
@@ -345,15 +345,22 @@ namespace BankingMain
                 }
             }
         }
-        public static int CheckMoney()
+        public static long CheckMoney()
         {
             while (true)
             {
+                if (ExecuteMethod.transferAccount)
+                    Console.WriteLine("Enter amount to transfer: ");
+                else if (ExecuteMethod.withdrawAccount)
+                    Console.WriteLine("Enter amount to withdraw: ");
+                else
+                    Console.WriteLine("Enter amount to deposit: ");
+
                 string? money = Console.ReadLine();
                 if (money != null)
                 {
-                    int amount;
-                    bool isInt = int.TryParse(money, out amount);
+                    long amount;
+                    bool isInt = long.TryParse(money, out amount);
                     if (isInt)
                         return amount;
                     else

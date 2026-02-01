@@ -1,0 +1,12 @@
+/workspaces/Personal-Projects/Banking.Domain/bin/Debug/net9.0/Banking.Domain.deps.json
+/workspaces/Personal-Projects/Banking.Domain/bin/Debug/net9.0/Banking.Domain.dll
+/workspaces/Personal-Projects/Banking.Domain/bin/Debug/net9.0/Banking.Domain.pdb
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/Banking.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/Banking.Domain.AssemblyInfoInputs.cache
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/Banking.Domain.AssemblyInfo.cs
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/Banking.Domain.csproj.CoreCompileInputs.cache
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/Banking.Domain.sourcelink.json
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/Banking.Domain.dll
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/refint/Banking.Domain.dll
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/Banking.Domain.pdb
+/workspaces/Personal-Projects/Banking.Domain/obj/Debug/net9.0/ref/Banking.Domain.dll
